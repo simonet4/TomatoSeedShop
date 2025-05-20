@@ -1,21 +1,30 @@
 package ihm;
 
 import java.awt.EventQueue;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modèle.OutilsBaseDonneesTomates;
+import modèle.Tomate;
+import modèle.Tomates;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class accueil extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -48,8 +57,20 @@ public class accueil extends JFrame {
 		JLabel lblNewLabel = new JLabel("Nos graines de tomates");
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
-		table = new JTable();
-		contentPane.add(table, BorderLayout.CENTER);
+		scrollPane = new JScrollPane();
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+		Tomates tomates = OutilsBaseDonneesTomates.générationBaseDeTomates("/Users/liam/Documents/Cours/S2/S2.01 /TomatoSeedShop/src/main/resources/data/tomates.json");
+		
+		List<String> noms = new ArrayList<>();
+		
+		for (Tomate tomate : tomates.getTomates()) {
+			noms.add(tomate.getDésignation());
+		}
+		
+		JList<String> listeNoms = new JList<>(noms.toArray(new String[0]));
+		scrollPane.setViewportView(listeNoms);
+
 	}
 
 }
