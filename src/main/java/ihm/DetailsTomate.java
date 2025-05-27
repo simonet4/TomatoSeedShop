@@ -19,6 +19,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
+import modèle.Panier;
 import modèle.Tomate;
 
 import javax.swing.border.EtchedBorder;
@@ -50,25 +51,9 @@ public class DetailsTomate extends JDialog {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DetailsTomate frame = new DetailsTomate();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public DetailsTomate() {
+	public DetailsTomate(Panier panier) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 316);
@@ -113,15 +98,19 @@ public class DetailsTomate extends JDialog {
 		lblImage.setIcon(image);
 		panel_1.add(lblImage, BorderLayout.CENTER);
 		
-		JLabel lblDisponibilité = new JLabel("En rupture");
-		panel_1.add(lblDisponibilité, BorderLayout.SOUTH);
-		
 		JComboBox produitsSimilaires = new JComboBox();
 		produitsSimilaires.setToolTipText("");
 		produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] {"Produits similaires", "Truc", "Bidule", "Machin", "Chose"}));
 		panelGauche.add(produitsSimilaires, BorderLayout.SOUTH);
 		
+		JLabel lblDisponibilité = new JLabel("En rupture");
+		panelGauche.add(lblDisponibilité, BorderLayout.CENTER);
+		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
+		panel_2.setLayout(new BorderLayout(0, 0));
+		
+		JTextArea textArea = new JTextArea();
+		panel_2.add(textArea, BorderLayout.NORTH);
 	}
 }
