@@ -110,8 +110,8 @@ public class accueil extends JFrame {
 		listeNoms.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				PagePanier pagePanier = new PagePanier(accueil.this.panier);
-		        pagePanier.setVisible(true);
+				DetailsTomate pageDetails = new DetailsTomate(accueil.this.panier);
+				pageDetails.setVisible(true);
 			}
 		});
 		scrollPane.setViewportView(listeNoms);
