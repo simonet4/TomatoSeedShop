@@ -20,6 +20,13 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class accueil extends JFrame {
 
@@ -55,16 +62,16 @@ public class accueil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelHeader = new JPanel();
-		contentPane.add(panelHeader, BorderLayout.NORTH);
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblTitre = new JLabel("Nos graines de tomates");
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		panelHeader.add(lblTitre);
+		panel.add(lblTitre, BorderLayout.CENTER);
 		
-		JLabel lblPrix = new JLabel("New label");
-		lblPrix.setHorizontalAlignment(SwingConstants.RIGHT);
-		panelHeader.add(lblPrix);
+		JLabel lblSommePanier = new JLabel("€");
+		panel.add(lblSommePanier, BorderLayout.EAST);
 		
 		scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
