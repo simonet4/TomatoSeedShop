@@ -82,7 +82,7 @@ public class PagePanier extends JFrame {
 		Title.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Victor\\Documents\\TomatoSeedShop\\src\\main\\resources\\images\\ProjectImages\\PetitPanier3.png"));
+		lblNewLabel.setIcon(new ImageIcon(PagePanier.class.getResource("/ihm/PetitPanier3.png")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Script MT Bold", Font.BOLD, 30));
 		Title.add(lblNewLabel, BorderLayout.WEST);
