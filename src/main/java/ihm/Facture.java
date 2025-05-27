@@ -19,6 +19,7 @@ public class Facture extends JFrame {
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout());
         JLabel titleLabel = new JLabel("Votre facture", JLabel.CENTER);
+        titleLabel.setIcon(new ImageIcon("C:\\Users\\urami\\OneDrive\\Documents\\GitHub\\facture1.png"));
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 36));
         titleLabel.setForeground(new Color(34, 139, 34));
         titlePanel.add(titleLabel, BorderLayout.NORTH);
@@ -27,7 +28,7 @@ public class Facture extends JFrame {
         JLabel messageLabel = new JLabel("Merci de votre visite !", JLabel.CENTER);
         messageLabel.setFont(new Font("Arial", Font.ITALIC, 18));
         messageLabel.setForeground(new Color(46, 139, 87));
-        titlePanel.add(messageLabel, BorderLayout.CENTER);
+        titlePanel.add(messageLabel, BorderLayout.SOUTH);
 
         getContentPane().add(titlePanel, BorderLayout.NORTH);
 
