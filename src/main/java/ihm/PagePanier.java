@@ -2,16 +2,13 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,24 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-
 import modèle.Panier;
-
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.ImageIcon;
 
-public class PagePanier extends JFrame {
+public class PagePanier extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-
 
 	private JPanel contentPane;
 	private JTextField txtTotal;
@@ -49,15 +34,18 @@ public class PagePanier extends JFrame {
 	private JTextField txtRechercherUnArticle;
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public PagePanier(Panier panier) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setModal(true); // Important for dialog behavior
+		setTitle("Votre panier");
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 657, 390);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+		getContentPane().add(contentPane, BorderLayout.CENTER); // main content
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel Title = new JPanel();
@@ -69,7 +57,7 @@ public class PagePanier extends JFrame {
 		Title.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PagePanier.class.getResource("/ihm/PetitPanier3.png")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/images/ProjectImages/PetitPanier3.png")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Script MT Bold", Font.BOLD, 30));
 		Title.add(lblNewLabel, BorderLayout.WEST);
@@ -122,6 +110,7 @@ public class PagePanier extends JFrame {
 		txtFraisDePort.setColumns(10);
 
 		textField_4 = new JTextField();
+		textField_4.setText("5.50€");
 		textField_4.setFont(new Font("Roboto", Font.BOLD, 10));
 		textField_4.setBackground(new Color(255, 255, 255));
 		textField_4.setEditable(false);
@@ -160,6 +149,7 @@ public class PagePanier extends JFrame {
 		panel_4.add(ButtonValiderPanier);
 		ButtonValiderPanier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO: Add validation logic here
 			}
 		});
 
@@ -168,7 +158,7 @@ public class PagePanier extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int response = JOptionPane.showConfirmDialog(PagePanier.this,
-						"Voulez-vous vraiment supprimer le panier ?", "SÃ©lectionner une option",
+						"Voulez-vous vraiment supprimer le panier ?", "Selectionner une option",
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (response == JOptionPane.YES_OPTION) {
 					// Code to clear the cart
