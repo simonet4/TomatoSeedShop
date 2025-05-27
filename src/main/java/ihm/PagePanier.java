@@ -158,7 +158,6 @@ public class PagePanier extends JDialog {
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (response == JOptionPane.YES_OPTION) {
 					clearCart();
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			}
 		});
