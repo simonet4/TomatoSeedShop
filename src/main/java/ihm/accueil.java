@@ -1,6 +1,7 @@
 package ihm;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class accueil extends JFrame {
 
@@ -69,9 +71,17 @@ public class accueil extends JFrame {
 		panel.add(lblTitre, BorderLayout.CENTER);
 		
 		JButton btnPanier = new JButton("New button");
+		ImageIcon originalIcon = new ImageIcon(accueil.class.getResource("/ihm/PetitPanier3.png"));
+		Image originalImage = originalIcon.getImage();
+
+		// Resize to desired width and height (e.g., 30x30 pixels)
+		int taille = 30;
+		Image nouvelleImage = originalImage.getScaledInstance(taille, taille, Image.SCALE_SMOOTH);
+
+		btnPanier.setIcon(new ImageIcon(nouvelleImage));
 		btnPanier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PagePanier pagePanier = new PagePanier();
+				PagePanier pagePanier = new PagePanier(this.panier);
 				pagePanier.setVisible(true);
 			}
 		});
