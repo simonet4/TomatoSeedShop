@@ -66,7 +66,7 @@ public class PagePanier extends JFrame {
 	 */
 	public PagePanier() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 871, 390);
+		setBounds(100, 100, 657, 390);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -78,7 +78,7 @@ public class PagePanier extends JFrame {
 		
 		JLabel Market_title = new JLabel("VOTRE PANIER");
 		Market_title.setHorizontalAlignment(SwingConstants.CENTER);
-		Market_title.setFont(new Font("Script MT Bold", Font.PLAIN, 30));
+		Market_title.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
 		Title.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("");
