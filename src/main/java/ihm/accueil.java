@@ -71,7 +71,7 @@ public class accueil extends JFrame {
 		panel.add(lblTitre, BorderLayout.CENTER);
 		
 		JButton btnPanier = new JButton("New button");
-		ImageIcon originalIcon = new ImageIcon(accueil.class.getResource("/ihm/PetitPanier3.png"));
+		ImageIcon originalIcon = new ImageIcon(getClass().getResource("/images/ProjectImages/PetitPanier3.png"));
 		Image originalImage = originalIcon.getImage();
 
 		// Resize to desired width and height (e.g., 30x30 pixels)
