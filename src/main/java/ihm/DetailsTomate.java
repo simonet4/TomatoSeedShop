@@ -86,7 +86,7 @@ public class DetailsTomate extends JDialog {
         panelGauche.add(panelImage);
 
         JLabel lblImage = new JLabel("");
-        ImageIcon image = new ImageIcon(getClass().getResource("/images/Tomates200x200/"+tomate.getNomImage()+".jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/images/Tomates200x200/" + tomate.getNomImage() + ".jpg"));
         panelImage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         lblImage.setIcon(image);
         panelImage.add(lblImage);
