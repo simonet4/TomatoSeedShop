@@ -33,7 +33,7 @@ public class PagePanier extends JDialog {
 	private JTextField txtLeCacaEst;
 	private JTextField txtRechercherUnArticle;
 
-	public PagePanier(Panier panier) {
+	public PagePanier() {
 		setModal(true); 
 		setTitle("Votre panier");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -146,6 +146,8 @@ public class PagePanier extends JDialog {
 		panel_4.add(ButtonValiderPanier);
 		ButtonValiderPanier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Facture facture = new Facture(accueil.getPanier());
+		        facture.setVisible(true);
 			}
 		});
 
