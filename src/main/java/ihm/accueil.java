@@ -148,6 +148,14 @@ public class accueil extends JFrame {
 		filtreCouleurs.setModel(new DefaultComboBoxModel(new String[] {"Toutes les couleurs", "Bleu", "Vert", "Rouge", "Orange", "Jaune", "Noir", "Multicolore"}));
 		
 		JButton conseils = new JButton("");
+		conseils.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConseilCulture coordonnées = new ConseilCulture();
+				coordonnées.setModal(true);
+				coordonnées.setVisible(true);
+				coordonnées.setFocusableWindowState(true);
+			}
+		});
 		originalIcon = new ImageIcon(getClass().getResource("/images/ProjectImages/plant.png"));
 		originalImage = originalIcon.getImage();
 		taille = 50;
