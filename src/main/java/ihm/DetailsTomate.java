@@ -22,7 +22,11 @@ import modèle.OutilsBaseDonneesTomates;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
+
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
+import javax.swing.ComboBoxModel;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -48,8 +52,10 @@ public class DetailsTomate extends JDialog {
     private JTextField textNbGraines;
     private JTextField textPrix;
 
+
     public DetailsTomate(String désignationTomate) {
-    	Tomate tomate = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json").getTomate("Tomate Joie de la Table");
+    	Tomates tomates = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json");
+    	Tomate tomate = tomates.getTomate("Tomate Joie de la Table");
     	//Tomate tomate = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json").getTomate(désignationTomate);
     	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -95,22 +101,23 @@ public class DetailsTomate extends JDialog {
         panelImage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelImage.add(lblImage);
         
-        JPanel panel_1 = new JPanel();
-        panelGauche.add(panel_1, BorderLayout.SOUTH);
+        JPanel panelStock = new JPanel();
+        panelGauche.add(panelStock, BorderLayout.SOUTH);
         
                 JLabel lblDisponibilite = new JLabel("En stock");
                 lblDisponibilite.setForeground(new Color(0, 128, 0));
                 if(tomate.getStock() == 0) {
                 	lblDisponibilite.setText("En rupture");
                 	lblDisponibilite.setForeground(new Color(128, 0, 0));
+                	btnAjouter.setEnabled(false);
                 }
-                panel_1.add(lblDisponibilite);
+                panelStock.add(lblDisponibilite);
                 
-                        
-                                JComboBox<String> produitsSimilaires = new JComboBox<>();
-                                panel_1.add(produitsSimilaires);
-                                produitsSimilaires.setToolTipText("");
-                                produitsSimilaires.setModel(new DefaultComboBoxModel<>(new String[] {"Produits similaires", "Truc", "Bidule", "Machin", "Chose"}));
+                				JComboBox<String> produitsSimilaires = new JComboBox<>();
+                				produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] {"Produits similaires", "Fraise", "Aubergine", "Fruit du dragon"}));
+                                //JComboBox<String> produitsSimilaires = new JComboBox<>(tomate.getTomatesApparentées().toArray(new String[0]));
+                                panelStock.add(produitsSimilaires);
+                                produitsSimilaires.setToolTipText("Produits similaires");
 
         JPanel panelDroite = new JPanel();
         panelHaut.add(panelDroite);
@@ -151,22 +158,22 @@ public class DetailsTomate extends JDialog {
         panelNbGraines.add(textNbGraines);
         textNbGraines.setColumns(2);
         
-        JPanel panelQuantite = new JPanel();
-        panelNbQuantite.add(panelQuantite, BorderLayout.CENTER);
+        JPanel panelQuantitePrix = new JPanel();
+        panelNbQuantite.add(panelQuantitePrix, BorderLayout.CENTER);
         
         JLabel lblQuantite = new JLabel("Prix :");
-        panelQuantite.add(lblQuantite);
+        panelQuantitePrix.add(lblQuantite);
         
         textPrix = new JTextField();
         textPrix.setText("15€");
         //textPrix.setText(String.valueOf(tomate.getPrixTTC() + "€"));
         textPrix.setEditable(false);
-        panelQuantite.add(textPrix);
+        panelQuantitePrix.add(textPrix);
         textPrix.setColumns(3);
         
         JSpinner spinnerQuantite = new JSpinner();
         spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, 20, 1));
         //spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, tomate.getStock(), 1));
-        panelQuantite.add(spinnerQuantite);
+        panelQuantitePrix.add(spinnerQuantite);
     }
 }
