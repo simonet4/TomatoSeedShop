@@ -95,8 +95,13 @@ public class DetailsTomate extends JDialog {
         panelGauche.add(panel_1, BorderLayout.SOUTH);
         
                 JLabel lblDisponibilite = new JLabel("En stock");
-                panel_1.add(lblDisponibilite);
                 lblDisponibilite.setForeground(new Color(0, 128, 0));
+                if(tomate.getStock() == 0) {
+                	lblDisponibilite.setText("En rupture");
+                	lblDisponibilite.setForeground(new Color(128, 0, 0));
+                }
+                panel_1.add(lblDisponibilite);
+                
                         
                                 JComboBox<String> produitsSimilaires = new JComboBox<>();
                                 panel_1.add(produitsSimilaires);
@@ -112,7 +117,7 @@ public class DetailsTomate extends JDialog {
         panelDroite.add(panelDescription);
         panelDescription.setLayout(new BoxLayout(panelDescription, BoxLayout.X_AXIS));
         
-        JTextArea textDescription = new JTextArea();
+        JTextArea textDescription = new JTextArea(tomate.getDescription());
         panelDescription.add(textDescription);
         
         JPanel panelNbQuantite = new JPanel();
