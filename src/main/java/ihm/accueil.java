@@ -88,7 +88,7 @@ public class accueil extends JFrame {
 		btnPanier.setIcon(new ImageIcon(nouvelleImage));
 		btnPanier.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent arg0) {
-		        PagePanier pagePanier = new PagePanier(accueil.this.panier);
+		        PagePanier pagePanier = new PagePanier();
 		        pagePanier.setVisible(true);
 		    }
 		});
@@ -132,16 +132,10 @@ public class accueil extends JFrame {
 		}
 		
 		JList<String> listeNoms = new JList<>(noms.toArray(new String[0]));
-		listeNoms.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				//DetailsTomate pageDetails = new DetailsTomate(accueil.this.panier);
-				//pageDetails.setVisible(true);
-			}
-		});
 		listeNoms.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				DetailsTomate pageDetails = new DetailsTomate(accueil.this.panier);
+				DetailsTomate pageDetails = new DetailsTomate();
 				pageDetails.setVisible(true);
 			}
 		});
