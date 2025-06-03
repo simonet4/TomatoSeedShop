@@ -152,10 +152,7 @@ public class PagePanier extends JDialog {
 		ButtonValiderPanier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Coordonnées coordonnées = new Coordonnées();
-				coordonnées.setTitle("Ô'Tomates - Coordonnées");
-				coordonnées.setSize(520, 550);
-				coordonnées.setLocationRelativeTo(null);
-				coordonnées.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				coordonnées.setModal(true);
 				coordonnées.setVisible(true);
 				coordonnées.setFocusableWindowState(true);
 			}
