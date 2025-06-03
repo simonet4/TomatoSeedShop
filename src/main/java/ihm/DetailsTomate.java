@@ -16,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import modèle.Panier;
 import modèle.Tomate;
+import modèle.Tomates;
+import modèle.OutilsBaseDonneesTomates;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
@@ -31,6 +33,8 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.SpringLayout;
 import java.awt.CardLayout;
@@ -43,6 +47,8 @@ public class DetailsTomate extends JDialog {
     private JTextField textField_1;
 
     public DetailsTomate(String désignationTomate) {
+    	Tomate tomate = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json").getTomate(désignationTomate);
+    	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Détail de la tomate");
         setBounds(100, 100, 450, 316);
@@ -80,7 +86,7 @@ public class DetailsTomate extends JDialog {
         panelGauche.add(panelImage);
 
         JLabel lblImage = new JLabel("");
-        ImageIcon image = new ImageIcon(getClass().getResource("/images/Tomates200x200/ananas-2-scaled.jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/images/Tomates200x200/"+tomate.getNomImage()+".jpg"));
         panelImage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         lblImage.setIcon(image);
         panelImage.add(lblImage);
