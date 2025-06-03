@@ -107,7 +107,7 @@ public class accueil extends JFrame {
 		footer.setLayout(new BorderLayout(0, 0));
 		
 		filtres = new JPanel();
-		filtres.setBorder(new LineBorder(new Color(0, 169, 6), 0, true));
+		filtres.setBorder(new LineBorder(new Color(0, 169, 6), 0));
 		footer.add(filtres, BorderLayout.WEST);
 		filtres.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
