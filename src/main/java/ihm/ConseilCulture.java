@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import java.awt.Color;
 
 public class ConseilCulture extends JDialog {
 
@@ -46,13 +48,17 @@ public class ConseilCulture extends JDialog {
 	    panel.setLayout(new BorderLayout(0, 0));
 	    
 	    JLabel lblNewLabel = new JLabel("Conseils de culture");
+	    lblNewLabel.setForeground(new Color(255, 0, 0));
 	    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	    lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 	    panel.add(lblNewLabel);
 	    
-	    JLabel lblNewLabel_1 = new JLabel("test");
-	    lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-	    panel.add(lblNewLabel_1, BorderLayout.SOUTH);
+	    JTextPane txtpnSemisMarsavril = new JTextPane();
+	    txtpnSemisMarsavril.setForeground(new Color(255, 0, 0));
+	    txtpnSemisMarsavril.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	    txtpnSemisMarsavril.setEditable(false);
+	    txtpnSemisMarsavril.setText("Semis : mars-avril\r\nRepiquage : après les gelées\r\nRécolte : juillet à septembre, voire octobre");
+	    panel.add(txtpnSemisMarsavril, BorderLayout.SOUTH);
 	    contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 	    getContentPane().add(contentPanel, BorderLayout.CENTER);
 	    String[] conseils = {
@@ -70,7 +76,7 @@ public class ConseilCulture extends JDialog {
 	    	    "Arrosez abondamment les 3 premiers jours,",
 	    	    "arrêtez les 15 jours suivants puis arrosez régulièrement.",
 	    	    "",
-	    	    "Pensez à pailler ! ainsi vous garderez beaucoup plus facilement..."
+	    	    "Pensez à pailler ! ainsi vous garderez beaucoup plus facilement l'humidité dans le sol."
 	    	};
 	    contentPanel.setLayout(new BorderLayout(0, 0));
 	    JScrollPane scrollPane = new JScrollPane();
