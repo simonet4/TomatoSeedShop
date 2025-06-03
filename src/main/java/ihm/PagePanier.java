@@ -153,7 +153,7 @@ public class PagePanier extends JDialog {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				Coordonnées coordonnées = new Coordonnées();
-		        coordonnées.setModal(true); // Ensure it's non-modal
+		        coordonnées.setModal(true);
 				coordonnées.setVisible(true);
 			}
 		});
