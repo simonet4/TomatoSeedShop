@@ -77,11 +77,15 @@ public class DetailsTomate extends JDialog {
         JLabel lblDisponibilite = new JLabel("En rupture");
         panelGauche.add(lblDisponibilite, BorderLayout.CENTER);
 
-        JPanel panel_2 = new JPanel();
-        panel.add(panel_2);
-        panel_2.setLayout(new BorderLayout(0, 0));
-
+        JPanel panelDroite = new JPanel();
+        panel.add(panelDroite);
+        panelDroite.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panelDescription = new JPanel();
+        panelDroite.add(panelDescription, BorderLayout.NORTH);
+        panelDescription.setLayout(new BorderLayout(0, 0));
+        
         JTextArea textArea = new JTextArea();
-        panel_2.add(textArea, BorderLayout.NORTH);
+        panelDescription.add(textArea);
     }
 }
