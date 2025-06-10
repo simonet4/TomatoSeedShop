@@ -44,6 +44,8 @@ import javax.swing.SpringLayout;
 import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.DropMode;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DetailsTomate extends JDialog {
 
@@ -55,8 +57,8 @@ public class DetailsTomate extends JDialog {
 
     public DetailsTomate(String désignationTomate) {
     	Tomates tomates = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json");
-    	Tomate tomate = tomates.getTomate("Tomate Joie de la Table");
-    	//Tomate tomate = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json").getTomate(désignationTomate);
+    	//Tomate tomate = tomates.getTomate("Tomate Joie de la Table");
+    	Tomate tomate = tomates.getTomate(désignationTomate);
     	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Détail de la tomate");
@@ -80,6 +82,12 @@ public class DetailsTomate extends JDialog {
         panelButtons.add(btnAjouter);
 
         JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        		dispose();
+        	}
+        });
         panelButtons.add(btnAnnuler);
 
         JPanel panelHaut = new JPanel();
@@ -95,9 +103,8 @@ public class DetailsTomate extends JDialog {
         panelGauche.add(panelImage);
 
         JLabel lblImage = new JLabel("");
-        //lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/" + tomate.getNomImage() + ".jpg")));
-        lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/Tomate-Joie-de-la-Table-ressemble-scaled.jpg")));
-
+        lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/" + tomate.getNomImage() + ".jpg")));
+        //lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/Tomate-Joie-de-la-Table-ressemble-scaled.jpg")));
         panelImage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelImage.add(lblImage);
         
@@ -106,7 +113,7 @@ public class DetailsTomate extends JDialog {
                 
         JComboBox<String> produitsSimilaires = new JComboBox<>();
         produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] {"Produits similaires", "Fraise", "Aubergine", "Fruit du dragon"}));
-        //JComboBox<String> produitsSimilaires = new JComboBox<>(tomate.getTomatesApparentées().toArray(new String[0]));
+        //JComboBox<String> produitsSimilaires = new JComboBox<>(tomate.toStringAvecTomatesApparentées());
         panelStock.add(produitsSimilaires);
         produitsSimilaires.setToolTipText("Produits similaires");
 
@@ -119,8 +126,8 @@ public class DetailsTomate extends JDialog {
         panelDroite.add(panelDescription);
         panelDescription.setLayout(new BoxLayout(panelDescription, BoxLayout.X_AXIS));
         
-        String texte = "Variété rustique, précoce vigoureuse et productive.\\r\\n\\r\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\r\\n\\r\\nElles sont délicieuses en salade.";
-        //String texte = tomate.getDescription();
+        //String texte = "Variété rustique, précoce vigoureuse et productive.\\r\\n\\r\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\r\\n\\r\\nElles sont délicieuses en salade.";
+        String texte = tomate.getDescription();
         texte = texte.replace("\\r\\n\\r\\n", "\n\n");
         JTextArea textDescription = new JTextArea(texte);
         textDescription.setWrapStyleWord(true);
@@ -143,8 +150,8 @@ public class DetailsTomate extends JDialog {
         panelNbGraines.add(lblNbGraines);
         
         textNbGraines = new JTextField();
-        textNbGraines.setText(String.valueOf(10));
-        //textNbGraines.setText(String.valueOf(tomate.getNbGrainesParSachet()));
+        //textNbGraines.setText(String.valueOf(10));
+        textNbGraines.setText(String.valueOf(tomate.getNbGrainesParSachet()));
         textNbGraines.setEditable(false);
         panelNbGraines.add(textNbGraines);
         textNbGraines.setColumns(2);
@@ -156,15 +163,15 @@ public class DetailsTomate extends JDialog {
         panelQuantitePrix.add(lblQuantite);
         
         textPrix = new JTextField();
-        textPrix.setText("15€");
-        //textPrix.setText(String.valueOf(tomate.getPrixTTC() + "€"));
+        //textPrix.setText("15€");
+        textPrix.setText(String.valueOf(tomate.getPrixTTC() + "€"));
         textPrix.setEditable(false);
         panelQuantitePrix.add(textPrix);
         textPrix.setColumns(3);
         
         JSpinner spinnerQuantite = new JSpinner();
-        spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, 20, 1));
-        //spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, tomate.getStock(), 1));
+        //spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, 20, 1));
+        spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, tomate.getStock(), 1));
         panelQuantitePrix.add(spinnerQuantite);
         
         JLabel lblDisponibilite = new JLabel("En stock");
