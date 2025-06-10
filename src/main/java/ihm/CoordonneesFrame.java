@@ -27,6 +27,7 @@ public class CoordonneesFrame extends JDialog {
         getContentPane().setLayout(null);
 
         JLabel lblCoordonnees = new JLabel("Vos coordonnées");
+        lblCoordonnees.setForeground(new Color(34, 139, 34));
         lblCoordonnees.setFont(new Font("Tahoma", Font.BOLD, 18));
         lblCoordonnees.setBounds(160, 10, 200, 30);
         getContentPane().add(lblCoordonnees);
@@ -94,6 +95,43 @@ public class CoordonneesFrame extends JDialog {
         txtMail = new JTextField();
         txtMail.setBounds(150, 270, 300, 20);
         getContentPane().add(txtMail);
+        
+        JPanel panelPaiement = new JPanel();
+        panelPaiement.setForeground(new Color(34, 139, 34));
+        panelPaiement.setBorder(BorderFactory.createTitledBorder("Moyen de paiement"));
+        panelPaiement.setBounds(30, 310, 420, 60);
+        getContentPane().add(panelPaiement);
+        panelPaiement.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+        JRadioButton rdbCarte = new JRadioButton("Carte de crédit");
+        panelPaiement.add(rdbCarte);
+
+        JRadioButton rdbPaypal = new JRadioButton("Paypal");
+        panelPaiement.add(rdbPaypal);
+
+        JRadioButton rdbCheque = new JRadioButton("Chèque");
+        panelPaiement.add(rdbCheque);
+
+        ButtonGroup bgPaiement = new ButtonGroup();
+        bgPaiement.add(rdbCarte);
+        bgPaiement.add(rdbPaypal);
+        bgPaiement.add(rdbCheque);
+
+        JPanel panelNewsletter = new JPanel();
+        panelNewsletter.setBorder(BorderFactory.createTitledBorder("Abonnement à notre Newsletter"));
+        panelNewsletter.setBounds(30, 380, 420, 60);
+        getContentPane().add(panelNewsletter);
+        panelNewsletter.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+        JRadioButton rdbOui = new JRadioButton("Oui");
+        panelNewsletter.add(rdbOui);
+
+        JRadioButton rdbNon = new JRadioButton("Non");
+        panelNewsletter.add(rdbNon);
+
+        ButtonGroup bgNewsletter = new ButtonGroup();
+        bgNewsletter.add(rdbOui);
+        bgNewsletter.add(rdbNon);
 
         JButton btnOK = new JButton("OK");
         btnOK.setBounds(270, 460, 80, 30);
