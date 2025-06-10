@@ -156,28 +156,41 @@ public class CoordonneesFrame extends JDialog {
                 String mail = txtMail.getText();
 
                 String htmlContent = "<html>" +
-                        "<head>" +
-                        "<title>Facture</title>" +
-                        "<style>" +
-                        "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }" +
-                        "h1 { text-align: center; color: #333; }" +
-                        "p { text-align: center; font-size: 16px; line-height: 1.5; }" +
-                        ".label { font-weight: bold; }" +
-                        "</style>" +
-                        "</head>" +
-                        "<body>" +
-                        "<h1>Facture</h1>" +
-                        "<p class='label'>Nom :</p> <p>" + nom + "</p>" +
-                        "<p class='label'>Prénom :</p> <p>" + prenom + "</p>" +
-                        "<p class='label'>Adresse 1 :</p> <p>" + adresse1 + "</p>" +
-                        "<p class='label'>Adresse 2 :</p> <p>" + adresse2 + "</p>" +
-                        "<p class='label'>Code postal :</p> <p>" + codePostal + "</p>" +
-                        "<p class='label'>Ville :</p> <p>" + ville + "</p>" +
-                        "<p class='label'>Téléphone :</p> <p>" + telephone + "</p>" +
-                        "<p class='label'>Mail :</p> <p>" + mail + "</p>" +
-                        "</div>" +
-                        "</body>" +
-                        "</html>";
+                		"<head>" +
+                		"<title>Facture</title>" +
+                		"<style>" +
+                		"body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; margin: 0; padding: 40px; }" +
+                		
+               			"h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }" +
+                		"table { width: 100%; border-collapse: collapse; }" +
+                		"td.label { font-weight: bold; background-color: #ecf0f1; padding: 10px; width: 35%; color: #2c3e50; }" +
+                		"td.value { background-color: #fdfdfd; padding: 10px; color: #34495e; }" +
+                		"tr:nth-child(even) td { background-color: #f8f8f8; }" +
+                		".print-btn { background-color: #3498db; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 30px auto 0; display: block; }" +
+                		".print-btn:hover { background-color: #2980b9; }" +
+                		".footer { text-align: center; font-size: 12px; color: #999; margin-top: 40px; }" +
+                		"@media print { .print-btn { display: none; } body { padding: 0; background: white; } }" +
+                		"</style>" +
+                		"</head>" +
+                		"<body>" +
+                		
+                		"<h1>Facture</h1>" +
+                		"<table>" +
+                		"<tr><td class='label'>Nom :</td><td class='value'>" + nom + "</td></tr>" +
+                		"<tr><td class='label'>Prénom :</td><td class='value'>" + prenom + "</td></tr>" +
+                		"<tr><td class='label'>Adresse 1 :</td><td class='value'>" + adresse1 + "</td></tr>" +
+                		"<tr><td class='label'>Adresse 2 :</td><td class='value'>" + adresse2 + "</td></tr>" +
+                		"<tr><td class='label'>Code postal :</td><td class='value'>" + codePostal + "</td></tr>" +
+                		"<tr><td class='label'>Ville :</td><td class='value'>" + ville + "</td></tr>" +
+                		"<tr><td class='label'>Téléphone :</td><td class='value'>" + telephone + "</td></tr>" +
+                		"<tr><td class='label'>Mail :</td><td class='value'>" + mail + "</td></tr>" +
+                		"</table>" +
+                		"<button class='print-btn' onclick='window.print()'>🖨️ Imprimer la facture</button>" +
+                		"<div class='footer'>Merci pour votre confiance. Cette facture a été générée automatiquement.</div>" +
+                		"</div>" +
+                		"</body>" +
+                		"</html>";
+
 
 
                 try {
