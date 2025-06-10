@@ -62,7 +62,7 @@ public class DetailsTomate extends JDialog {
     	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Détail de la tomate");
-        setBounds(100, 100, 515, 340);
+        setBounds(100, 100, 515, 355);
         setResizable(false);
 
         contentPane = new JPanel();
@@ -77,16 +77,6 @@ public class DetailsTomate extends JDialog {
 
         JPanel panelButtons = new JPanel();
         contentPane.add(panelButtons, BorderLayout.SOUTH);
-
-        JButton btnAjouter = new JButton("Ajouter au panier");
-        
-        panelButtons.add(btnAjouter);
-        btnAjouter.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent arg0) {
-        		dispose();
-        	}
-        });
         
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addMouseListener(new MouseAdapter() {
@@ -106,7 +96,7 @@ public class DetailsTomate extends JDialog {
         panelGauche.setLayout(new BorderLayout(0, 0));
 
         JPanel panelImage = new JPanel();
-        panelImage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nom de la tomate", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+        panelImage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), tomate.getDésignation(), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
         panelGauche.add(panelImage);
 
         JLabel lblImage = new JLabel("");
@@ -120,7 +110,8 @@ public class DetailsTomate extends JDialog {
                 
         JComboBox<String> produitsSimilaires = new JComboBox<>();
         produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] {"Produits similaires", "Fraise", "Aubergine", "Fruit du dragon"}));
-        //JComboBox<String> produitsSimilaires = new JComboBox<>(tomate.toStringAvecTomatesApparentées());
+        //JComboBox<String> produitsSimilaires = new JComboBox<>();
+        //produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] tomate.getTomatesApparentées()));
         panelStock.add(produitsSimilaires);
         produitsSimilaires.setToolTipText("Produits similaires");
 
@@ -177,9 +168,23 @@ public class DetailsTomate extends JDialog {
         textPrix.setColumns(3);
         
         JSpinner spinnerQuantite = new JSpinner();
-        //spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, 20, 1));
-        spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, tomate.getStock(), 1));
+        //spinnerQuantite.setModel(new SpinnerNumberModel(1, 1, 20, 1));
+        spinnerQuantite.setModel(new SpinnerNumberModel(1, 1, tomate.getStock(), 1));
         panelQuantitePrix.add(spinnerQuantite);
+        
+        JButton btnAjouter = new JButton("Ajouter au panier");
+        panelButtons.add(btnAjouter);
+        btnAjouter.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        		Panier panier = accueil.getPanier();
+        		System.out.println(spinnerQuantite.getValue());
+        		System.out.println(tomate.toString());
+        		panier.ajouterTomate(tomate, (int) spinnerQuantite.getValue());
+        		accueil.setPanier(panier);
+        		dispose();
+        	}
+        });
         
         JLabel lblDisponibilite = new JLabel("En stock");
         lblDisponibilite.setForeground(new Color(0, 128, 0));
