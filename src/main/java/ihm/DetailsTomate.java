@@ -79,8 +79,15 @@ public class DetailsTomate extends JDialog {
         contentPane.add(panelButtons, BorderLayout.SOUTH);
 
         JButton btnAjouter = new JButton("Ajouter au panier");
+        
         panelButtons.add(btnAjouter);
-
+        btnAjouter.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        		dispose();
+        	}
+        });
+        
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addMouseListener(new MouseAdapter() {
         	@Override
