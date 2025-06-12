@@ -177,20 +177,19 @@ public class PagePanier extends JDialog {
 		ButtonValiderPanier.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_4.add(ButtonValiderPanier);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
 		tableProduits = new JTable();
 		tableProduits.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-<<<<<<< Updated upstream
-				"New column", "Total", "Quantit\u00E9", "Produit"
-=======
 				"Photo", "Produit", "Prix", "Quantit\u00E9", "Total"
->>>>>>> Stashed changes
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, String.class, Float.class, Integer.class, Float.class
+				Object.class, String.class, String.class, String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
