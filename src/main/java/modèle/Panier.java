@@ -30,4 +30,12 @@ public class Panier {
 		this.quantité.add(nouvelleQuantité);
 	}
 	
+	public Tomates getTomates() {
+		return this.tomates;
+	}
+	
+	public List<Integer> getQuantité() {
+		return this.quantité;
+	}
+	
 }

@@ -170,4 +170,14 @@ public class Tomates {
         }
         return null;
     }
+    
+    /**
+     * Retourne une tomate spécifique par sa position.
+     *
+     * @param indice de la tomate recherchée.
+     * @return La tomate correspondant à l'indice.
+     */
+    public Tomate getTomate(int position) {
+    	return this.tomates.get(position);
+    }
 }
