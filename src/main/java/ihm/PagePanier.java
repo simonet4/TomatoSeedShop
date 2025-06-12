@@ -17,9 +17,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import modèle.Panier;
+import modèle.Tomates;
+
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
 import javax.swing.JList;
 import javax.swing.ScrollPaneConstants;
 import java.awt.SystemColor;
@@ -181,7 +185,8 @@ public class PagePanier extends JDialog {
 				"New column", "Total", "Quantit\u00E9", "Produit"
 			}
 		));
-		contentPane.add(tableProduits, BorderLayout.CENTER);
+		this.updateListePanier();
+		scrollPane.setViewportView(tableProduits);
 
 		ButtonViderPanier.addActionListener(new ActionListener() {
 			@Override
@@ -195,6 +200,25 @@ public class PagePanier extends JDialog {
 				}
 			}
 		});
+		
 	}
 
+	public void updateListePanier() {
+		DefaultTableModel model = (DefaultTableModel) tableProduits.getModel();
+		model.setRowCount(0);
+		
+		Panier panier = accueil.getPanier();
+		
+		Tomates tomates = panier.getTomates();
+		List<Integer> quantité = panier.getQuantité();
+		
+		Object[] newRow;
+		
+		for (int i = 0; i < quantité.size(); i++) {
+			newRow = new Object[] {"zizi", tomates.getTomate(i).getDésignation(), "zizi", "zizi"};
+			model.addRow(newRow);
+		}
+		
+	}
+	
 }
