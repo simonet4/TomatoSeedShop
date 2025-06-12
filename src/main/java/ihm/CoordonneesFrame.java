@@ -166,50 +166,59 @@ public class CoordonneesFrame extends JDialog {
                 String abonnementNewsletter = rdbOui.isSelected() ? "Oui" : "Non";
 
                 String htmlContent = "<html>" +
-                		"<head>" +
-                		"<title>Facture</title>" +
-                		"<style>" +
-                		"body { font-family: 'Segoe UI', sans-serif; background-color: #fff8f0; margin: 0; padding: 40px; color: #3e3e3e; }" +
-                		"h1 { text-align: center; color: #b22222; margin-bottom: 30px; font-size: 32px; }" +
-                		"h2 { color: #5a2d0c; margin-top: 40px; font-size: 24px; border-bottom: 2px solid #f0e5d8; padding-bottom: 5px; }" +
-                		"table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }" +
-                		"td.label { font-weight: bold; background-color: #f0e5d8; padding: 10px; width: 40%; color: #5a2d0c; }" +
-                		"td.value { background-color: #fffdfb; padding: 10px; color: #3e3e3e; }" +
-                		"tr:nth-child(even) td { background-color: #f9f3ee; }" +
-                		".print-btn { background-color: #b22222; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 30px auto 0; display: block; font-weight: bold; }" +
-                		".print-btn:hover { background-color: #a11c1c; }" +
-                		".footer { text-align: center; font-size: 12px; color: #888; margin-top: 40px; }" +
-                		"@media print { .print-btn { display: none; } body { padding: 0; background: white; } }" +
-                		"</style>" +
-                		"</head>" +
-                		"<body>" +
+                	    "<head>" +
+                	    "<title>Facture</title>" +
+                	    "<style>" +
+                	    "body { font-family: 'Segoe UI', sans-serif; background-color: #fff8f0; margin: 0; padding: 40px; color: #3e3e3e; }" +
+                	    "h1 { text-align: center; color: #b22222; margin-bottom: 30px; font-size: 32px; }" +
+                	    "h2 { color: #5a2d0c; margin-top: 40px; font-size: 24px; border-bottom: 2px solid #f0e5d8; padding-bottom: 5px; }" +
+                	    "table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }" +
+                	    "th, td { border: 1px solid #ddd; padding: 8px; }" +
+                	    "th { background-color: #f0e5d8; }" +
+                	    "tr:nth-child(even) { background-color: #f9f3ee; }" +
+                	    ".print-btn { background-color: #b22222; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 30px auto 0; display: block; font-weight: bold; }" +
+                	    ".print-btn:hover { background-color: #a11c1c; }" +
+                	    ".footer { text-align: center; font-size: 12px; color: #888; margin-top: 40px; }" +
+                	    "@media print { .print-btn { display: none; } body { padding: 0; background: white; } }" +
+                	    "</style>" +
+                	    "</head>" +
+                	    "<body>" +
 
-                		"<h1>🍅 Facture</h1>" +
+                	    "<h1>🍅 Facture</h1>" +
 
-                		"<table>" +
-                		"<tr><td class='label'>Nom :</td><td class='value'>" + nom + "</td></tr>" +
-                		"<tr><td class='label'>Prénom :</td><td class='value'>" + prenom + "</td></tr>" +
-                		"<tr><td class='label'>Adresse 1 :</td><td class='value'>" + adresse1 + "</td></tr>" +
-                		"<tr><td class='label'>Adresse 2 :</td><td class='value'>" + adresse2 + "</td></tr>" +
-                		"<tr><td class='label'>Code postal :</td><td class='value'>" + codePostal + "</td></tr>" +
-                		"<tr><td class='label'>Ville :</td><td class='value'>" + ville + "</td></tr>" +
-                		"<tr><td class='label'>Téléphone :</td><td class='value'>" + telephone + "</td></tr>" +
-                		"<tr><td class='label'>Mail :</td><td class='value'>" + mail + "</td></tr>" +
-                		"<tr><td class='label'>Moyen de paiement :</td><td class='value'>" + moyenPaiement + "</td></tr>" +
-                		"<tr><td class='label'>Abonnement Newsletter :</td><td class='value'>" + abonnementNewsletter + "</td></tr>" +
-                		"</table>" +
+                	    "<table>" +
+                	    "<tr><td class='label'>Nom :</td><td class='value'>" + nom + "</td></tr>" +
+                	    "<tr><td class='label'>Prénom :</td><td class='value'>" + prenom + "</td></tr>" +
+                	    "<tr><td class='label'>Adresse 1 :</td><td class='value'>" + adresse1 + "</td></tr>" +
+                	    "<tr><td class='label'>Adresse 2 :</td><td class='value'>" + adresse2 + "</td></tr>" +
+                	    "<tr><td class='label'>Code postal :</td><td class='value'>" + codePostal + "</td></tr>" +
+                	    "<tr><td class='label'>Ville :</td><td class='value'>" + ville + "</td></tr>" +
+                	    "<tr><td class='label'>Téléphone :</td><td class='value'>" + telephone + "</td></tr>" +
+                	    "<tr><td class='label'>Mail :</td><td class='value'>" + mail + "</td></tr>" +
+                	    "<tr><td class='label'>Moyen de paiement :</td><td class='value'>" + moyenPaiement + "</td></tr>" +
+                	    "<tr><td class='label'>Abonnement Newsletter :</td><td class='value'>" + abonnementNewsletter + "</td></tr>" +
+                	    "</table>" +
 
-                		"<h2>Détail du panier</h2>" +
-                		"<table>" +
-                		"<tr><td class='label'>Total panier HT :</td><td class='value'>" + totalArrondiHT + " €</td></tr>" +
-                		"<tr><td class='label'>Frais de port :</td><td class='value'>5.50 €</td></tr>" +
-                		"<tr><td class='label'>Total panier TTC :</td><td class='value'>" + totalArrondi + " €</td></tr>" +
-                		"</table>" +
+                	    "<h2>Détail du panier</h2>" +
 
-                		"<button class='print-btn' onclick='window.print()'>🖨️ Imprimer la facture</button>" +
-                		"<div class='footer'>Merci pour votre confiance!</div>" +
-                		"</body>" +
-                		"</html>";
+                	    // Tableau statique des produits (exemple)
+                	    "<table>" +
+                	    "<tr><th>Produit</th><th>Prix</th><th>Quantité</th><th>Total</th></tr>" +
+                	    "<tr><td>Tomates cerises</td><td>3.50 €</td><td>2</td><td>7.00 €</td></tr>" +
+                	    "<tr><td>Tomates Roma</td><td>4.00 €</td><td>1</td><td>4.00 €</td></tr>" +
+                	    "<tr><td>Tomates cœur de bœuf</td><td>5.00 €</td><td>3</td><td>15.00 €</td></tr>" +
+                	    "</table>" +
+
+                	    "<table>" +
+                	    "<tr><td class='label'>Total panier HT :</td><td class='value'>" + totalArrondiHT + " €</td></tr>" +
+                	    "<tr><td class='label'>Frais de port :</td><td class='value'>5.50 €</td></tr>" +
+                	    "<tr><td class='label'>Total panier TTC :</td><td class='value'>" + totalArrondi + " €</td></tr>" +
+                	    "</table>" +
+
+                	    "<button class='print-btn' onclick='window.print()'>🖨️ Imprimer la facture</button>" +
+                	    "<div class='footer'>Merci pour votre confiance!</div>" +
+                	    "</body>" +
+                	    "</html>";
 
 
                 try {
