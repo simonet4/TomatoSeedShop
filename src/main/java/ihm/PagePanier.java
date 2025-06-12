@@ -101,7 +101,9 @@ public class PagePanier extends JDialog {
 		panel_5.add(txtSoustotal);
 		txtSoustotal.setColumns(10);
 
-		textField_3 = new JTextField(accueil.getPanier().total() + "€"  );
+		double totalTTC = accueil.getPanier().total();
+		double totalTTCArrondi = Math.round(totalTTC* 100.0) / 100.0;
+		txtTotalCalculée = new JTextField(totalTTCArrondi + "€");
 		textField_3.setFont(new Font("Roboto", Font.BOLD, 10));
 		textField_3.setForeground(new Color(0, 0, 0));
 		textField_3.setBackground(SystemColor.info);
@@ -132,9 +134,9 @@ public class PagePanier extends JDialog {
 		panel_5.add(txtTotal);
 		txtTotal.setColumns(10);
 
-		double total = 5.5 + accueil.getPanier().total();
-		double totalArrondi = Math.round(total * 100.0) / 100.0;
-		txtTotalCalculée = new JTextField(totalArrondi + "€");
+		double totalTTC = 5.5 + accueil.getPanier().total();
+		double totalTTCArrondi = Math.round(totalTTC* 100.0) / 100.0;
+		txtTotalCalculée = new JTextField(totalTTCArrondi + "€");
 		txtTotalCalculée.setForeground(new Color(0, 83, 0));
 		txtTotalCalculée.setFont(new Font("Roboto", Font.BOLD, 14));
 		txtTotalCalculée.setBackground(new Color(217, 255, 217));
