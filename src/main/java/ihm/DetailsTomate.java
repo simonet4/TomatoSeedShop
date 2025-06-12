@@ -37,6 +37,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.miginfocom.swing.MigLayout;
@@ -56,12 +57,12 @@ public class DetailsTomate extends JDialog {
     private JTextField textNbGraines;
     private JTextField textPrix;
 
-
+    // version application
     public DetailsTomate(String désignationTomate) {
     	this.setModal(true);
     	Tomates tomates = OutilsBaseDonneesTomates.générationBaseDeTomates("src/main/resources/data/tomates.json");
-    	//Tomate tomate = tomates.getTomate("Tomate Joie de la Table");
     	Tomate tomate = tomates.getTomate(désignationTomate);
+    	List<Tomate> tomatesAparentees = tomate.getTomatesApparentées();
     	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Détail de la tomate");
@@ -84,7 +85,7 @@ public class DetailsTomate extends JDialog {
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addMouseListener(new MouseAdapter() {
         	@Override
-        	public void mouseClicked(MouseEvent arg0) {
+        	public void mousePressed(MouseEvent arg0) {
         		dispose();
         	}
         });
@@ -104,17 +105,17 @@ public class DetailsTomate extends JDialog {
 
         JLabel lblImage = new JLabel("");
         lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/" + tomate.getNomImage() + ".jpg")));
-        //lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/Tomate-Joie-de-la-Table-ressemble-scaled.jpg")));
         panelImage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelImage.add(lblImage);
         
         JPanel panelStock = new JPanel();
         panelGauche.add(panelStock, BorderLayout.SOUTH);
                 
-        //JComboBox<String> produitsSimilaires = new JComboBox<>(new DefaultComboBoxModel(new String[] {"Produits similaires", "Fraise", "Aubergine", "Fruit du dragon"}));
-        JComboBox<String> produitsSimilaires = new JComboBox<>(new DefaultComboBoxModel(new String[] {"Produits similaires", "Fraise", "Aubergine", "Fruit du dragon"}));
-        //JComboBox<String> produitsSimilaires = new JComboBox<>();
-        //produitsSimilaires.setModel(new DefaultComboBoxModel(new String[] tomate.getTomatesApparentées()));
+        JComboBox<String> produitsSimilaires = new JComboBox<>();
+        produitsSimilaires.addItem("Produits similaires");
+        for (Tomate tomateAparentee : tomatesAparentees) {
+            produitsSimilaires.addItem(tomateAparentee.getDésignation());
+        }
         panelStock.add(produitsSimilaires);
         produitsSimilaires.setToolTipText("Produits similaires");
 
@@ -130,7 +131,6 @@ public class DetailsTomate extends JDialog {
         JScrollPane scrollPane = new JScrollPane();
         panelDescription.add(scrollPane);
         
-        //String texte = "Variété rustique, précoce vigoureuse et productive.\\r\\n\\r\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\r\\n\\r\\nElles sont délicieuses en salade.Variété rustique, précoce vigoureuse et productive.\\\\r\\\\n\\\\r\\\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\\\r\\\\n\\\\r\\\\nElles sont délicieuses en salade.Variété rustique, précoce vigoureuse et productive.\\\\r\\\\n\\\\r\\\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\\\r\\\\n\\\\r\\\\nElles sont délicieuses en salade.Variété rustique, précoce vigoureuse et productive.\\\\r\\\\n\\\\r\\\\nSes fruits de 150 à 250 g, très légèrement côtelés, ont une chair fine, juteuse et savoureuse.\\\\r\\\\n\\\\r\\\\nElles sont délicieuses en salade.";
         String texte = tomate.getDescription();
         texte = texte.replace("\\r\\n\\r\\n", "\n\n");
         JTextArea textDescription = new JTextArea(texte);
@@ -155,7 +155,6 @@ public class DetailsTomate extends JDialog {
         panelNbGraines.add(lblNbGraines);
         
         textNbGraines = new JTextField();
-        textNbGraines.setText(String.valueOf(10));
         textNbGraines.setText(String.valueOf(tomate.getNbGrainesParSachet()));
         textNbGraines.setEditable(false);
         panelNbGraines.add(textNbGraines);
@@ -168,14 +167,12 @@ public class DetailsTomate extends JDialog {
         panelQuantitePrix.add(lblQuantite);
         
         textPrix = new JTextField();
-        //textPrix.setText("15€");
         textPrix.setText(String.valueOf(tomate.getPrixTTC() + "€"));
         textPrix.setEditable(false);
         panelQuantitePrix.add(textPrix);
         textPrix.setColumns(3);
         
         JSpinner spinnerQuantite = new JSpinner();
-        //spinnerQuantite.setModel(new SpinnerNumberModel(1, 1, 20, 1));
         spinnerQuantite.setModel(new SpinnerNumberModel(0, 0, tomate.getStock(), 1));
         panelQuantitePrix.add(spinnerQuantite);
         
@@ -183,8 +180,7 @@ public class DetailsTomate extends JDialog {
         panelButtons.add(btnAjouter);
         btnAjouter.addMouseListener(new MouseAdapter() {
         	@Override
-        	public void mouseClicked(MouseEvent arg0) {
-        		System.out.println(tomate.getTomatesApparentées());
+        	public void mousePressed(MouseEvent arg0) {
         		Panier panier = accueil.getPanier();
         		panier.ajouterTomate(tomate, (int) spinnerQuantite.getValue());
         		accueil.setPanier(panier);
@@ -199,7 +195,15 @@ public class DetailsTomate extends JDialog {
         	lblDisponibilite.setForeground(new Color(128, 0, 0));
          	btnAjouter.setEnabled(false);
          	spinnerQuantite.setEnabled(false);
+        } else {
+        	produitsSimilaires.setVisible(false);
         }
         panelStock.add(lblDisponibilite);
     }
+    
+    // Version vue design
+    public DetailsTomate() {
+    	this("Tomate Russian Persimmon");
+    }
 }
+
