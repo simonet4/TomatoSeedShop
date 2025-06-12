@@ -19,6 +19,7 @@ import modèle.TypeTomate;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -99,11 +100,13 @@ public class accueil extends JFrame {
 		accueil.btnPanier.setIcon(new ImageIcon(nouvelleImage));
 		accueil.btnPanier.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent arg0) {
-		    	if (accueil.panier.total() == 0.0F) {
-		    		
+		    	if (accueil.getPanier().total() == 0.0F) {
+		    		JOptionPane.showMessageDialog(null, "Votre panier est vide !", "Panier vide", JOptionPane.INFORMATION_MESSAGE);
 		    	}
-		        PagePanier pagePanier = new PagePanier();
-		        pagePanier.setVisible(true);
+		    	else{
+		    		PagePanier pagePanier = new PagePanier();
+		    		pagePanier.setVisible(true);		    	
+		    	}
 		    }
 		});
 
