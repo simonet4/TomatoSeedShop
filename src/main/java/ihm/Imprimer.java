@@ -9,7 +9,7 @@ public class Imprimer extends JFrame {
         setTitle("Imprimer");
         setSize(500, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
@@ -37,7 +37,7 @@ public class Imprimer extends JFrame {
         JPanel apparencePanel = new JPanel(); // You can add components to this panel as needed
         tabbedPane.addTab("Apparence", apparencePanel);
 
-        add(tabbedPane, BorderLayout.CENTER);
+        getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel();
         JButton printButton = new JButton("Imprimer");
@@ -53,6 +53,6 @@ public class Imprimer extends JFrame {
         bottomPanel.add(printButton);
         bottomPanel.add(cancelButton);
 
-        add(bottomPanel, BorderLayout.SOUTH);
+        getContentPane().add(bottomPanel, BorderLayout.SOUTH);
     }
 }
