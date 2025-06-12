@@ -102,8 +102,8 @@ public class PagePanier extends JDialog {
 		txtSoustotal.setColumns(10);
 
 		double totalHT = accueil.getPanier().total();
-		double totalHTArrondi = Math.round(totalHT * 100.0) / 100.0;
-		txtTotalCalculée = new JTextField(totalHTArrondi + "€");
+		double totalArrondiHT = Math.round(totalHT * 100.0) / 100.0;
+		textField_3 = new JTextField(totalArrondiHT + "€");
 		textField_3.setFont(new Font("Roboto", Font.BOLD, 10));
 		textField_3.setForeground(new Color(0, 0, 0));
 		textField_3.setBackground(SystemColor.info);
@@ -135,8 +135,8 @@ public class PagePanier extends JDialog {
 		txtTotal.setColumns(10);
 
 		double totalTTC = 5.5 + accueil.getPanier().total();
-		double totalTTCArrondi = Math.round(totalTTC* 100.0) / 100.0;
-		txtTotalCalculée = new JTextField(totalTTCArrondi + "€");
+		double totalArrondiTTC = Math.round(totalTTC * 100.0) / 100.0;
+		txtTotalCalculée = new JTextField(totalArrondiTTC + "€");
 		txtTotalCalculée.setForeground(new Color(0, 83, 0));
 		txtTotalCalculée.setFont(new Font("Roboto", Font.BOLD, 14));
 		txtTotalCalculée.setBackground(new Color(217, 255, 217));
@@ -173,18 +173,15 @@ public class PagePanier extends JDialog {
 		ButtonValiderPanier.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_4.add(ButtonValiderPanier);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
 		tableProduits = new JTable();
 		tableProduits.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Photo", "Produit", "Prix", "Quantité", "Total"
+				"New column", "Total", "Quantit\u00E9", "Produit"
 			}
 		));
-		scrollPane.setViewportView(tableProduits);
+		contentPane.add(tableProduits, BorderLayout.CENTER);
 
 		ButtonViderPanier.addActionListener(new ActionListener() {
 			@Override
