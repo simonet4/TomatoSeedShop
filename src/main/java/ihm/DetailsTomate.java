@@ -103,7 +103,7 @@ public class DetailsTomate extends JDialog {
 
         JPanel panelImage = new JPanel();
         panelImage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), tomate.getDésignation(), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
-        panelGauche.add(panelImage);
+        panelGauche.add(panelImage, BorderLayout.NORTH);
 
         JLabel lblImage = new JLabel("");
         lblImage.setIcon(new ImageIcon(getClass().getResource("/images/Tomates200x200/" + tomate.getNomImage() + ".jpg")));
@@ -112,13 +112,14 @@ public class DetailsTomate extends JDialog {
         
         JPanel panelStock = new JPanel();
         panelGauche.add(panelStock, BorderLayout.SOUTH);
+        panelStock.setLayout(new GridLayout(2, 1, 0, 0));
                 
         JComboBox<String> produitsSimilaires = new JComboBox<>();
         produitsSimilaires.addItem("Produits similaires");
         for (Tomate tomateAparentee : tomatesAparentees) {
             produitsSimilaires.addItem(tomateAparentee.getDésignation());
         }
-        panelStock.add(produitsSimilaires, GridLayout.class);
+        panelStock.add(produitsSimilaires);
         produitsSimilaires.setToolTipText("Produits similaires");
 
         JPanel panelDroite = new JPanel();
@@ -186,10 +187,14 @@ public class DetailsTomate extends JDialog {
         btnAjouter.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mousePressed(MouseEvent arg0) {
-        		Panier panier = accueil.getPanier();
-        		panier.ajouterTomate(tomate, (int) spinnerQuantite.getValue());
-        		accueil.setPanier(panier);
-        		dispose();
+        		if ((int) spinnerQuantite.getValue() != 0) {
+        			if (tomatesDansPanier.getTomate(désignation) != null) {
+        				
+        	        }
+	        		panier.ajouterTomate(tomate, (int) spinnerQuantite.getValue());
+	        		accueil.setPanier(panier);
+	        		dispose();
+        		}
         	}
         });
         
@@ -203,7 +208,7 @@ public class DetailsTomate extends JDialog {
         } else {
         	produitsSimilaires.setVisible(false);
         }
-        panelStock.add(lblDisponibilite, GridLayout.class);
+        panelStock.add(lblDisponibilite);
     }
     
     // Version vue design
