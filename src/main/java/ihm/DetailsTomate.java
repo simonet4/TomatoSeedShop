@@ -49,6 +49,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.SwingConstants;
 
 public class DetailsTomate extends JDialog {
 
@@ -199,6 +200,7 @@ public class DetailsTomate extends JDialog {
         });
         
         JLabel lblDisponibilite = new JLabel("En stock");
+        lblDisponibilite.setHorizontalAlignment(SwingConstants.CENTER);
         lblDisponibilite.setForeground(new Color(0, 128, 0));
         if(tomate.getStock() == 0) {
         	lblDisponibilite.setText("En rupture");
@@ -210,5 +212,9 @@ public class DetailsTomate extends JDialog {
         }
         panelStock.add(lblDisponibilite);
     }
+    
+    // Version vue design
+    public DetailsTomate() {
+    	this("Tomate Russian Persimmon");
+    }
 }
-
