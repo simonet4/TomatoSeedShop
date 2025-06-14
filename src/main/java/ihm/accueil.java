@@ -217,8 +217,8 @@ public class accueil extends JFrame {
 	}
 
 	public static void setPanier(Panier p) {
-		double totalArrondiHT = Math.round(accueil.getPanier().total() * 100.0) / 100.0;
 		accueil.panier = p;
+		double totalArrondiHT = Math.round(accueil.getPanier().total() * 100.0) / 100.0;
 		accueil.btnPanier.setText(totalArrondiHT + "€");
 	}
 	
